@@ -72,6 +72,9 @@ set background=light
 let g:solarized_termcolors=256
 colorscheme solarized
 
+" Highlight search results
+set hlsearch
+
 " Space leader
 let mapleader = "\<Space>"
 
