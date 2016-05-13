@@ -66,23 +66,33 @@ filetype plugin indent on    " required
 
 " ## OTHER STANDARD VIM CONFIGS ##
 
+" Character encoding
+scriptencoding utf-8
+set encoding=utf-8
+
 " Shows text in different colors and calls filetype on
 syntax enable
 set background=light
 let g:solarized_termcolors=256
 colorscheme solarized
 
-" Highlight search results
-set hlsearch
-
 " Space leader
 let mapleader = "\<Space>"
+
+" Highlight search results
+set hlsearch
 
 " Toggle line numbers
 nmap <C-N><C-N> :set invnumber<CR>
 
-" Double-j to 'escape mode'
+" jk to 'escape mode'
 inoremap jk <ESC>
+
+" Toggle `set list`, a command that shows white spaces.
+nmap <leader>l :set list!<CR>
+
+" Use the same symbols as TextMate for tabstops and EOLs
+set listchars=tab:▸\ ,eol:¬
 
 " make airline work
 set laststatus=2
