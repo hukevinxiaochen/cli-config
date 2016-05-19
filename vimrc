@@ -28,6 +28,9 @@ Plugin 'bling/vim-airline'
 " javascript indenting
 Plugin 'pangloss/vim-javascript'
 
+" JSX indenting
+Plugin 'mxw/vim-jsx'
+
 " dash doc lookup
 Plugin 'rizzatti/dash.vim'
 
@@ -97,3 +100,6 @@ set listchars=tab:▸\ ,eol:¬
 " make airline work
 set laststatus=2
 let g:airline_powerline_fonts=1
+
+" have jsx highlighting in js files too
+let g:jsx_ext_required = 0
