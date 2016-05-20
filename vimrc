@@ -75,7 +75,7 @@ set encoding=utf-8
 
 " Shows text in different colors and calls filetype on
 syntax enable
-set background=light
+set background=dark
 let g:solarized_termcolors=256
 colorscheme solarized
 
