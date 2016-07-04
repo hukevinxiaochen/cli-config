@@ -7,7 +7,7 @@ PROMPT='[%w] %n %F{white}%2~%f$(git_prompt_info) : '
 # If we are logged in via SSH onto a remote machine
 # e.g. [ [Thu 26] KHU:~/cli-config(master) ]:
 if [ -n "$SSH_CLIENT" ]; then
-  PROMPT='%B%F{black}[%f%b [%w] %n %F{white}%2~%f$(git_prompt_info) %B%F{black}]%f%b: '
+  PROMPT='%B%F{black}[%f%b [%w] %n %m %F{white}%2~%f$(git_prompt_info) %B%F{black}]%f%b: '
 fi
 
 # Configure how git_prompt_info displays.
