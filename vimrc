@@ -19,8 +19,13 @@ Plugin 'VundleVim/Vundle.vim'
 " " The following are examples of different formats supported.
 " " Keep Plugin commands between vundle#begin/end.
 
-" plugin on GitHub repo
+" " Timothy Pope Vim Suite
+" git
 Plugin 'tpope/vim-fugitive'
+" surround
+Plugin 'tpope/vim-surround'
+" repeat
+Plugin 'tpope/vim-repeat'
 
 " airline status bar
 Plugin 'bling/vim-airline'
