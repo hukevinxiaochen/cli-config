@@ -88,5 +88,6 @@ alias less='less -R'
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+# Toggle hidden files
 alias showFiles="defaults write com.apple.finder AppleShowAllFiles TRUE; killall Finder"
 alias hideFiles="defaults write com.apple.finder AppleShowAllFiles FALSE; killall Finder"
