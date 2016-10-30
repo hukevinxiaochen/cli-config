@@ -60,7 +60,7 @@ source $ZSH/oh-my-zsh.sh
 
 # Pipe ls colors to less
 
-alias ls='CLICOLOR_FORCE=1 ls -G'
+# alias ls='CLICOLOR_FORCE=1 ls -G'
 alias less='less -R'
 
 # You may need to manually set your language environment
