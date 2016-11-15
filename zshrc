@@ -1,6 +1,9 @@
 # Path to your oh-my-zsh installation.
 export ZSH=/Users/KHU/.oh-my-zsh
 
+# Set editor mode to vi
+bindkey -v
+
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
@@ -88,6 +91,5 @@ alias less='less -R'
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-# Toggle hidden files
 alias showFiles="defaults write com.apple.finder AppleShowAllFiles TRUE; killall Finder"
 alias hideFiles="defaults write com.apple.finder AppleShowAllFiles FALSE; killall Finder"
