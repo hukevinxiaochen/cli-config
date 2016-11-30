@@ -108,9 +108,9 @@ nmap <leader>l :set list!<CR>
 " Use the same symbols as TextMate for tabstops and EOLs
 set listchars=tab:▸\ ,eol:¬
 
-" make airline work
+" make lightline work
 set laststatus=2
-let g:airline_powerline_fonts=1
+set noshowmode
 
 " have jsx highlighting in js files too
 let g:jsx_ext_required = 0
