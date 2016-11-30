@@ -111,6 +111,20 @@ set listchars=tab:▸\ ,eol:¬
 " make lightline work
 set laststatus=2
 set noshowmode
+let g:lightline = {
+\ 'colorscheme': 'seoul256',
+\ 'active': {
+\ 	'left': [ [ 'mode', 'paste' ], [ 'fugitive' ] ]
+\	},
+\ 'component_function': {
+\	'fugitive': 'LightlineFugitive'
+\	}
+\ }
+
+" lightline configuration function for fugitive
+function! LightlineFugitive()
+	return exists('*fugitive#head') ? fugitive#head() : ''
+endfunction
 
 " have jsx highlighting in js files too
 let g:jsx_ext_required = 0
