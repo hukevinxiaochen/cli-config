@@ -16,7 +16,6 @@ ZSH_THEME_GIT_PROMPT_SUFFIX=""
 ZSH_THEME_GIT_PROMPT_DIRTY=")%f %F{red}✗%f"
 ZSH_THEME_GIT_PROMPT_CLEAN=")%f"
 
-
 # Concatenate the following to PROMPT to display username and hostname
 # Courtesy of Steve Losh 
 # http://stevelosh.com/blog/2010/02/my-extravagant-zsh-prompt/

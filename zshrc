@@ -1,9 +1,6 @@
 # Path to your oh-my-zsh installation.
 export ZSH=/Users/KHU/.oh-my-zsh
 
-# Set editor mode to vi
-bindkey -v
-
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
@@ -93,3 +90,19 @@ alias less='less -R'
 
 alias showFiles="defaults write com.apple.finder AppleShowAllFiles TRUE; killall Finder"
 alias hideFiles="defaults write com.apple.finder AppleShowAllFiles FALSE; killall Finder"
+
+# Set Editor mode
+bindkey -v
+
+# Set the delay that occurs after hitting a prefix key to something shorter
+export KEYTIMEOUT=10
+
+# Update prompt with vi mode with widget
+function zle-line-init zle-keymap-select {
+  VIM_PROMPT="%{$fg_bold[yellow]%} [% NORMAL]% %{$reset_color%}"
+  RPS1="${${KEYMAP/vicmd/$VIM_PROMPT}/(main|viins)/}"
+  zle reset-prompt
+}
+
+zle -N zle-line-init
+zle -N zle-keymap-select

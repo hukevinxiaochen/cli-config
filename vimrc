@@ -28,7 +28,10 @@ Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-repeat'
 
 " airline status bar
-Plugin 'bling/vim-airline'
+" Plugin 'vim-airline/vim-airline'
+
+" lightline status bar
+Plugin 'itchyny/lightline.vim'
 
 " javascript indenting
 Plugin 'pangloss/vim-javascript'
@@ -37,7 +40,7 @@ Plugin 'pangloss/vim-javascript'
 Plugin 'mxw/vim-jsx'
 
 " dash doc lookup
-Plugin 'rizzatti/dash.vim'
+" Plugin 'rizzatti/dash.vim'
 
 " Solarized colors
 Plugin 'altercation/vim-colors-solarized'
