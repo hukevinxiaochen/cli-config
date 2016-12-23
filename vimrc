@@ -27,27 +27,27 @@ Plugin 'tpope/vim-surround'
 " repeat
 Plugin 'tpope/vim-repeat'
 
-" airline status bar
-" Plugin 'vim-airline/vim-airline'
-
-" lightline status bar
-Plugin 'itchyny/lightline.vim'
-
+" " Syntax Highlighting and Indenting
 " javascript indenting
 Plugin 'pangloss/vim-javascript'
-
-" JSX indenting
-Plugin 'mxw/vim-jsx'
-
-" dash doc lookup
-" Plugin 'rizzatti/dash.vim'
-
-" Solarized colors
-Plugin 'altercation/vim-colors-solarized'
 
 " Vimtex
 Plugin 'lervag/vimtex'
 
+" vim-gfm-syntax
+Plugin 'rhysd/vim-gfm-syntax'
+
+" " Make things pretty
+" lightline status bar
+Plugin 'itchyny/lightline.vim'
+
+" " TOO SLOW - airline status bar
+" Plugin 'vim-airline/vim-airline'
+
+" Solarized colors
+Plugin 'altercation/vim-colors-solarized'
+
+" " EXAMPLES OF VUNDLE declarations
 " " plugin from http://vim-scripts.org/vim/scripts.html
 " Plugin 'L9'
 " " Git plugin not hosted on GitHub
@@ -59,7 +59,7 @@ Plugin 'lervag/vimtex'
 " Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
 " " Avoid a name conflict with L9
 " Plugin 'user/L9', {'name': 'newL9'}
-"
+
 " " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -114,7 +114,7 @@ set noshowmode
 let g:lightline = {
 \ 'colorscheme': 'seoul256',
 \ 'active': {
-\ 	'left': [ [ 'mode', 'paste' ], [ 'fugitive' ] ]
+\ 	'left': [ [ 'mode', 'paste' ], [ 'fugitive' ], [ 'filename' ] ]
 \	},
 \ 'component_function': {
 \	'fugitive': 'LightlineFugitive'
@@ -128,3 +128,6 @@ endfunction
 
 " have jsx highlighting in js files too
 let g:jsx_ext_required = 0
+
+" use markdown highlighted fenced code blocks for ruby
+let g:markdown_fenced_languages = ['ruby', 'javascript']
