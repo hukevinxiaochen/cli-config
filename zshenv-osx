@@ -19,6 +19,10 @@ eval "$(pyenv init -)"
 ## find custom scripts
 PATH="$PATH:$HOME/bin"
 
+# LSCOLORS
+export CLICOLOR=1
+export LSCOLORS=ExFxBxDxCxegedabagacad
+
 #####################
 # DISABLED SETTINGS #
 #####################

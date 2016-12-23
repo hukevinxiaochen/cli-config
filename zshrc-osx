@@ -1,27 +1,30 @@
-# Path to your oh-my-zsh installation.
-export ZSH=~/.oh-my-zsh
-
-# Set name of the theme to load.
-# Look in ~/.oh-my-zsh/themes/
-# Optionally, if you set this to "random", it'll load a random theme each
-# time that oh-my-zsh is loaded.
-ZSH_THEME="custom"
-
-# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-# Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
-
-# Initialize oh-my-zsh
-source $ZSH/oh-my-zsh.sh
-
 #||||||||||||||||||||#
 # User configuration #
 #||||||||||||||||||||#
 
+
+#-------
+# Completions
+# 
+# This step takes some time. Don't be alarmed. It provides command completion
+# services. Super convenient!
+# ----------------------------------------------------------------------------#
+autoload -Uz compinit
+compinit
+
+#-------
+# Options
+#-----------------------------------------------------------------------------#
 # Resolve symlinks to true paths
 setopt CHASE_LINKS
+
+# Enable parameter, command, and arithmetic substitution/expansion 
+# (Source: Zsh Manual)
+setopt PROMPT_SUBST
+
+#-------
+# Aliases
+#-----------------------------------------------------------------------------#
 
 # Pipe ls colors to less
 # alias ls='CLICOLOR_FORCE=1 ls -G'
@@ -34,11 +37,33 @@ alias hideFiles="defaults write com.apple.finder AppleShowAllFiles FALSE; killal
 # go to personal journal
 alias journal="cd /Users/KHU/Documents/keep/personal/journal"
 
+#-------
+# Miscellaneous
+#-----------------------------------------------------------------------------#
+
 # Set Editor mode
 bindkey -v
 
 # Set the delay that occurs after hitting a prefix key to something shorter
 export KEYTIMEOUT=10
+
+#-------
+# PROMPT Customization
+# ----------------------------------------------------------------------------#
+
+# Load vcs_info (Source: Zsh Manual)
+autoload -Uz vcs_info
+zstyle ':vcs_info:*' enable git
+zstyle ':vcs_info:git:*' actionformats '%b'
+zstyle ':vcs_info:git:*' formats '%b'
+
+precmd() { 
+	vcs_info 
+}
+
+# Custom Prompt
+# Assumes Dark terminal background
+PS1='%n|%F{green}%3~%f-%F{white}%w %T%f|(%F{cyan}${vcs_info_msg_0_}%f%)%#: '
 
 # Update prompt with vi mode with widget
 function zle-line-init zle-keymap-select {
@@ -46,13 +71,44 @@ function zle-line-init zle-keymap-select {
   RPS1="${${KEYMAP/vicmd/$VIM_PROMPT}/(main|viins)/}"
   zle reset-prompt
 }
-
+ 
 zle -N zle-line-init
 zle -N zle-keymap-select
+
+#||||||||||||||||||||||||||||#
+# Uncomment to use oh-my-zsh #
+#||||||||||||||||||||||||||||#
+
+# Path to your oh-my-zsh installation.
+# export ZSH=~/.oh-my-zsh
+
+# Set name of the theme to load.
+# Look in ~/.oh-my-zsh/themes/
+# Optionally, if you set this to "random", it'll load a random theme each
+# time that oh-my-zsh is loaded.
+# ZSH_THEME="custom"
+
+# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
+# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
+# Example format: plugins=(rails git textmate ruby lighthouse)
+# Add wisely, as too many plugins slow down shell startup.
+# plugins=(git)
+
+# Initialize oh-my-zsh
+# source $ZSH/oh-my-zsh.sh
 
 #||||||||||||||||#
 # UNUSED CONFIGS #
 #||||||||||||||||#
+
+# Load colors
+# autoload -Uz colors
+# colors
+# e.g. fg_bold
+
+# Load the prompt theme system (Source: ArchWiki)
+# autoload -Uz promptinit
+# promptinit
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
