@@ -7,6 +7,53 @@ export ZSH=/Users/KHU/.oh-my-zsh
 # time that oh-my-zsh is loaded.
 ZSH_THEME="custom"
 
+# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
+# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
+# Example format: plugins=(rails git textmate ruby lighthouse)
+# Add wisely, as too many plugins slow down shell startup.
+plugins=(git)
+
+# Initialize oh-my-zsh
+source $ZSH/oh-my-zsh.sh
+
+#||||||||||||||||||||#
+# User configuration #
+#||||||||||||||||||||#
+
+# Resolve symlinks to true paths
+setopt CHASE_LINKS
+
+# Pipe ls colors to less
+# alias ls='CLICOLOR_FORCE=1 ls -G'
+alias less='less -R'
+
+# show and hide files toggle
+alias showFiles="defaults write com.apple.finder AppleShowAllFiles TRUE; killall Finder"
+alias hideFiles="defaults write com.apple.finder AppleShowAllFiles FALSE; killall Finder"
+
+# go to personal journal
+alias journal="cd /Users/KHU/Desktop/keep/personal/journal"
+
+# Set Editor mode
+bindkey -v
+
+# Set the delay that occurs after hitting a prefix key to something shorter
+export KEYTIMEOUT=10
+
+# Update prompt with vi mode with widget
+function zle-line-init zle-keymap-select {
+  VIM_PROMPT="%{$fg_bold[yellow]%} [% N]% %{$reset_color%}"
+  RPS1="${${KEYMAP/vicmd/$VIM_PROMPT}/(main|viins)/}"
+  zle reset-prompt
+}
+
+zle -N zle-line-init
+zle -N zle-keymap-select
+
+#||||||||||||||||#
+# UNUSED CONFIGS #
+#||||||||||||||||#
+
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
 
@@ -45,24 +92,6 @@ ZSH_THEME="custom"
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
-# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-# Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
-
-# User configuration
-
-# Resolve symlinks to true paths
-setopt CHASE_LINKS
-
-source $ZSH/oh-my-zsh.sh
-
-# Pipe ls colors to less
-
-# alias ls='CLICOLOR_FORCE=1 ls -G'
-alias less='less -R'
-
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
 
@@ -88,21 +117,3 @@ alias less='less -R'
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-alias showFiles="defaults write com.apple.finder AppleShowAllFiles TRUE; killall Finder"
-alias hideFiles="defaults write com.apple.finder AppleShowAllFiles FALSE; killall Finder"
-
-# Set Editor mode
-bindkey -v
-
-# Set the delay that occurs after hitting a prefix key to something shorter
-export KEYTIMEOUT=10
-
-# Update prompt with vi mode with widget
-function zle-line-init zle-keymap-select {
-  VIM_PROMPT="%{$fg_bold[yellow]%} [% NORMAL]% %{$reset_color%}"
-  RPS1="${${KEYMAP/vicmd/$VIM_PROMPT}/(main|viins)/}"
-  zle reset-prompt
-}
-
-zle -N zle-line-init
-zle -N zle-keymap-select
