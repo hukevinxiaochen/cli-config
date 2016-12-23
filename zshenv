@@ -1,9 +1,11 @@
-# export MANPATH="/usr/local/man:$MANPATH"
+####################
+# ENABLED SETTINGS #
+####################
 
-# Not sure what this does
+# Set a custom PATH
 export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/Library/TeX/texbin"
 
-# Load up Node Version Manager
+# Node Version Manager
 export NVM_DIR="/Users/KHU/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
 
@@ -11,13 +13,16 @@ export NVM_DIR="/Users/KHU/.nvm"
 PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
 
-## custom scripts
+## pyenv
+eval "$(pyenv init -)"
+
+## find custom scripts
 PATH="$PATH:$HOME/bin"
 
-# Uninstalled May 8
-## pyenv
-# export PYENV_ROOT="$HOME/.pyenv"
-# PATH="$PYENV_ROOT/bin:$PATH"
+#####################
+# DISABLED SETTINGS #
+#####################
 
-## pyenv
-# eval "$(pyenv init -)"
+# Set the MANPATH environment variable
+# export MANPATH="/usr/local/man:$MANPATH"
+
