@@ -2,19 +2,57 @@
 # User configuration #
 #||||||||||||||||||||#
 
-
 #-------
 # Completions
 # 
 # This step takes some time. Don't be alarmed. It provides command completion
 # services. Super convenient!
-# ----------------------------------------------------------------------------#
+#
+# Speed up zsh compinit by only checking cache once a day.
+#
+# .zcompdump hack stolen from <https://carlosbecker.com/posts/speeding-up-zsh/>
+# who got it from <https://gist.github.com/ctechols/ca1035271ad134841284>
+# 
+# Source (man date, man strftime, man stat, Zsh manual 20.2)
+#
+# date [+output_fmt]
+# 
+# **strftime formats:**
+#
+# %j is replaced by the day of the year as a decimal number (001-366).
+#
+# stat [-f format | -l | -r | -s | -x] [-t timefmt] [file ...]
+#
+# '%Sm' here, S is a format specifier (not a strftime format) for string
+# output, as opposed to signed decimal, octal, unsigned decimal, hexadecimal,
+# or floating point.
+#
+# '%Sm' here, m is the required field specifier for when the file was last
+# modified.
+# 
+# -t '%j' displays timestamps using specified strftime format. See above for
+# what %j supplies.
+#
+# ~/.zcompdump, Zsh's compinit produces this after initializing its completion
+# system. It can be read on future invocations to speed up initialization. We 
+# are further optimizing this process by limiting the production of new dump 
+# files updated with information about new functions in the system to once per
+# day.
+#
+# -C option runs compinit to skip the step of searching through the whole fpath
+# for changes and creating a new dump file.
+#-----------------------------------------------------------------------------#
 autoload -Uz compinit
-compinit
+if [ $(date +%j) != $(stat -f '%Sm' -t '%j' ~/.zcompdump) ]; then
+  compinit
+else
+  compinit -C
+fi
 
 #-------
 # Options
 #-----------------------------------------------------------------------------#
+
 # Resolve symlinks to true paths
 setopt CHASE_LINKS
 
@@ -27,7 +65,7 @@ setopt PROMPT_SUBST
 #-----------------------------------------------------------------------------#
 
 # Pipe ls colors to less
-# alias ls='CLICOLOR_FORCE=1 ls -G'
+alias ls='CLICOLOR_FORCE=1 ls -G'
 alias less='less -R'
 
 # show and hide files toggle
@@ -41,7 +79,11 @@ alias journal="cd /Users/KHU/Documents/keep/personal/journal"
 # Miscellaneous
 #-----------------------------------------------------------------------------#
 
-# Set Editor mode
+# Set Zsh Line Editor mode
+# Zsh Manual 18.2 Keymaps 18.3 Zle Builtins
+# -v option Selects keymap `viins` for any operations by the current command, 
+# links `viins` to `main` so that it is selected by default the next time the 
+# editor starts.
 bindkey -v
 
 # Set the delay that occurs after hitting a prefix key to something shorter
@@ -50,12 +92,70 @@ export KEYTIMEOUT=10
 #-------
 # PROMPT Customization
 # ----------------------------------------------------------------------------#
+#
+# Load vcs_info (Source: Zsh manual
+# - 26.5 Gathering info from vcs
+# - 9.3.1 Hook functions)
+#
+# We load the function and call it
+# before every command using the
+# precmd hook.
+#
+# vcs_info will look for a git repo
+# and return some info in the form
+# of the vcs_info_msg_0_ parameter
+# that we can expand in our custom
+# prompt string.
+#
+# We style this parameter with calls
+# to zstyle
+#
+# We also control the behavior of
+# vcs_info through zstyle calls.
+#
+# enable git is so we only check for
+# git repos.
+#
+# check-for-changes means that we 
+# do check for unstaged and staged
+# changes and update that for each
+# command prompt.
+#
+# The stagedstr and unstagedstr are
+# the Unicode icons I have chosen 
+# for visual representation of the
+# presence of staged or unstaged 
+# changes.
+#
+# $'u29BF' gives a Circled Bullet
+#
+# %B and %b delimit boldface
+# 
+# The formats are a custom string
+# specifying which pieces of info
+# we'll packaged into our
+# vcs_info_msg_0_:
+# 
+# '%b-%u%c'
+#
+# %b has a special meaning for
+# formats: the current branch.
+# %u shows if there are unstaged
+# %c shows if there are staged
+#
+# plus a bunch of visual effects
+# (explained below):
+#
+# %F{} and %f delimit foreground color
+# changes.
+#-----------------------------------
 
-# Load vcs_info (Source: Zsh Manual)
 autoload -Uz vcs_info
 zstyle ':vcs_info:*' enable git
-zstyle ':vcs_info:git:*' actionformats '%b'
-zstyle ':vcs_info:git:*' formats '%b'
+zstyle ':vcs_info:git:*' check-for-changes true
+zstyle ':vcs_info:git:*' stagedstr $'%B\u29BF%b'
+zstyle ':vcs_info:git:*' unstagedstr $'%B\u29BF%b'
+zstyle ':vcs_info:git:*' formats '%F{cyan}%b%f-%F{red}%u%f%F{green}%c%f'
 
 precmd() { 
 	vcs_info 
@@ -63,7 +163,7 @@ precmd() {
 
 # Custom Prompt
 # Assumes Dark terminal background
-PS1='%n|%F{green}%3~%f-%F{white}%w %T%f|(%F{cyan}${vcs_info_msg_0_}%f%)%#: '
+PS1='%n|%F{green}%3~%f-%F{white}%w %T%f|(${vcs_info_msg_0_}%)%#: '
 
 # Update prompt with vi mode with widget
 function zle-line-init zle-keymap-select {
