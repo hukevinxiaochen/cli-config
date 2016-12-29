@@ -45,7 +45,14 @@ Plugin 'itchyny/lightline.vim'
 " Plugin 'vim-airline/vim-airline'
 
 " Solarized colors
+" ----------------
+"  Low contrast
 Plugin 'altercation/vim-colors-solarized'
+
+" Eldar colors
+" ------------
+"  High contrast
+Plugin 'agude/vim-eldar'
 
 " " EXAMPLES OF VUNDLE declarations
 " " plugin from http://vim-scripts.org/vim/scripts.html
@@ -86,9 +93,11 @@ set encoding=utf-8
 
 " Shows text in different colors and calls filetype on
 syntax enable
-set background=dark
-let g:solarized_termcolors=256
-colorscheme solarized
+colorscheme elflord
+
+" set background=dark
+" let g:solarized_termcolors=256
+" colorscheme solarized
 
 " Space leader
 let mapleader = "\<Space>"
