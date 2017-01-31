@@ -44,17 +44,18 @@ Plugin 'itchyny/lightline.vim'
 " " TOO SLOW - airline status bar
 " Plugin 'vim-airline/vim-airline'
 
-" Solarized colors
-" ----------------
-"  Low contrast
+"--------------
+" Color Schemes
+"-------------------------------------------------------------------------------
+
+Plugin 'Lokaltog/vim-distinguished'
 Plugin 'altercation/vim-colors-solarized'
+Plugin 'reedes/vim-colors-pencil'
+Plugin 'vim-scripts/summerfruit256.vim'
 
-" Eldar colors
-" ------------
-"  High contrast
-Plugin 'agude/vim-eldar'
-
-" " EXAMPLES OF VUNDLE declarations
+"-------------------------------- 
+" EXAMPLES OF VUNDLE declarations
+"-------------------------------------------------------------------------------
 " " plugin from http://vim-scripts.org/vim/scripts.html
 " Plugin 'L9'
 " " Git plugin not hosted on GitHub
@@ -67,14 +68,13 @@ Plugin 'agude/vim-eldar'
 " " Avoid a name conflict with L9
 " Plugin 'user/L9', {'name': 'newL9'}
 
-" " All of your Plugins must be added before the following line
+" All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
 
-" " To ignore plugin indent changes, instead use:
-" "filetype plugin on
-" "
-" " Brief help
+"-----------
+" Brief help
+"-------------------------------------------------------------------------------
 " " :PluginList       - lists configured plugins
 " " :PluginInstall    - installs plugins; append `!` to update or just
 " :PluginUpdate
@@ -93,11 +93,42 @@ set encoding=utf-8
 
 " Shows text in different colors and calls filetype on
 syntax enable
-colorscheme elflord
 
-" set background=dark
-" let g:solarized_termcolors=256
-" colorscheme solarized
+" Color Schemes----------------------------------------------------------------
+
+" Default
+colorscheme distinguished
+
+" Solarized Dark
+function! g:SolarizedDark()
+	set background=dark
+	let g:solarized_termcolors=256
+	colorscheme solarized
+endfunction
+
+" Solarized Light
+function! g:SolarizedLight()
+	set background=light
+	let g:solarized_termcolors=256
+	colorscheme solarized
+endfunction
+
+" Distinguished
+function g:Distinguished()
+	colorscheme distinguished
+endfunction
+
+" Pencil
+function g:Pencil()
+	let g:pencil_higher_contrast_ui=1
+	let g:pencil_neutral_headings=1
+	colorscheme pencil
+endfunction
+
+" Summerfruit 256
+function g:Summerfruit()
+	colorscheme summerfruit256
+endfunction
 
 " Space leader
 let mapleader = "\<Space>"
