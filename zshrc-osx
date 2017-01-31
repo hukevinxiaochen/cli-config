@@ -1,9 +1,72 @@
+#||||||||||||||||||||||||||||#
+# Use oh-my-zsh #
+#||||||||||||||||||||||||||||#
+
+# Path to your oh-my-zsh installation.
+export ZSH=~/.oh-my-zsh
+
+# Set name of the theme to load.
+# Look in ~/.oh-my-zsh/themes/
+# Optionally, if you set this to "random", it'll load a random theme each
+# time that oh-my-zsh is loaded.
+ZSH_THEME="custom"
+
+# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
+# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
+# Example format: plugins=(rails git textmate ruby lighthouse)
+# Add wisely, as too many plugins slow down shell startup.
+plugins=(git)
+
+# Initialize oh-my-zsh
+source $ZSH/oh-my-zsh.sh
+
 #||||||||||||||||||||#
 # User configuration #
 #||||||||||||||||||||#
 
 #-------
-# Completions
+# Options
+#-----------------------------------------------------------------------------#
+
+# Resolve symlinks to true paths
+setopt CHASE_LINKS
+
+# Uncomment if not using oh-my-zsh
+# Enable parameter, command, and arithmetic substitution/expansion 
+# (Source: Zsh Manual)
+# setopt PROMPT_SUBST
+
+#-------
+# Aliases
+#-----------------------------------------------------------------------------#
+
+# Pipe ls colors to less
+alias ls='CLICOLOR_FORCE=1 ls -G'
+alias less='less -R'
+
+# show and hide files toggle
+alias showFiles="defaults write com.apple.finder AppleShowAllFiles TRUE; killall Finder"
+alias hideFiles="defaults write com.apple.finder AppleShowAllFiles FALSE; killall Finder"
+
+# go to personal journal
+alias journal="cd /Users/KHU/Documents/keep/journal"
+
+#-------
+# Miscellaneous
+#-----------------------------------------------------------------------------#
+
+# Set Zsh Line Editor mode
+# Zsh Manual 18.2 Keymaps 18.3 Zle Builtins
+# -v option Selects keymap `viins` for any operations by the current command, 
+# links `viins` to `main` so that it is selected by default the next time the 
+# editor starts.
+bindkey -v
+
+# Set the delay that occurs after hitting a prefix key to something shorter
+export KEYTIMEOUT=10
+
+#-------
+# Let oh-my-zsh handle Completions
 # 
 # This step takes some time. Don't be alarmed. It provides command completion
 # services. Super convenient!
@@ -42,52 +105,12 @@
 # -C option runs compinit to skip the step of searching through the whole fpath
 # for changes and creating a new dump file.
 #-----------------------------------------------------------------------------#
-autoload -Uz compinit
-if [ $(date +%j) != $(stat -f '%Sm' -t '%j' ~/.zcompdump) ]; then
-  compinit
-else
-  compinit -C
-fi
-
-#-------
-# Options
-#-----------------------------------------------------------------------------#
-
-# Resolve symlinks to true paths
-setopt CHASE_LINKS
-
-# Enable parameter, command, and arithmetic substitution/expansion 
-# (Source: Zsh Manual)
-setopt PROMPT_SUBST
-
-#-------
-# Aliases
-#-----------------------------------------------------------------------------#
-
-# Pipe ls colors to less
-alias ls='CLICOLOR_FORCE=1 ls -G'
-alias less='less -R'
-
-# show and hide files toggle
-alias showFiles="defaults write com.apple.finder AppleShowAllFiles TRUE; killall Finder"
-alias hideFiles="defaults write com.apple.finder AppleShowAllFiles FALSE; killall Finder"
-
-# go to personal journal
-alias journal="cd /Users/KHU/Documents/keep/personal/journal"
-
-#-------
-# Miscellaneous
-#-----------------------------------------------------------------------------#
-
-# Set Zsh Line Editor mode
-# Zsh Manual 18.2 Keymaps 18.3 Zle Builtins
-# -v option Selects keymap `viins` for any operations by the current command, 
-# links `viins` to `main` so that it is selected by default the next time the 
-# editor starts.
-bindkey -v
-
-# Set the delay that occurs after hitting a prefix key to something shorter
-export KEYTIMEOUT=10
+# autoload -Uz compinit
+# if [ $(date +%j) != $(stat -f '%Sm' -t '%j' ~/.zcompdump) ]; then
+#   compinit
+# else
+#   compinit -C
+# fi
 
 #-------
 # PROMPT Customization
@@ -149,57 +172,25 @@ export KEYTIMEOUT=10
 # %F{} and %f delimit foreground color
 # changes.
 #-----------------------------------
+# USE OH-MY-ZSH-CUSTOM-THEME
+# autoload -Uz vcs_info
+# zstyle ':vcs_info:*' enable git
+# zstyle ':vcs_info:git:*' check-for-changes true
+# zstyle ':vcs_info:git:*' stagedstr $'%B\u29BF%b'
+# zstyle ':vcs_info:git:*' unstagedstr $'%B\u29BF%b'
+# zstyle ':vcs_info:git:*' formats '%F{cyan}%b%f-%F{red}%u%f%F{green}%c%f'
+# 
+# precmd() { 
+# 	vcs_info 
+# }
+# 
+# # Custom Prompt
+# # Assumes Dark terminal background
+# PS1='%n|%F{green}%3~%f-%F{white}%w %T%f|(${vcs_info_msg_0_}%)%#: '
 
-autoload -Uz vcs_info
-zstyle ':vcs_info:*' enable git
-zstyle ':vcs_info:git:*' check-for-changes true
-zstyle ':vcs_info:git:*' stagedstr $'%B\u29BF%b'
-zstyle ':vcs_info:git:*' unstagedstr $'%B\u29BF%b'
-zstyle ':vcs_info:git:*' formats '%F{cyan}%b%f-%F{red}%u%f%F{green}%c%f'
-
-precmd() { 
-	vcs_info 
-}
-
-# Custom Prompt
-# Assumes Dark terminal background
-PS1='%n|%F{green}%3~%f-%F{white}%w %T%f|(${vcs_info_msg_0_}%)%#: '
-
-# Update prompt with vi mode with widget
-function zle-line-init zle-keymap-select {
-  VIM_PROMPT="%{$fg_bold[yellow]%} [% N]% %{$reset_color%}"
-  RPS1="${${KEYMAP/vicmd/$VIM_PROMPT}/(main|viins)/}"
-  zle reset-prompt
-}
- 
-zle -N zle-line-init
-zle -N zle-keymap-select
-
-#||||||||||||||||||||||||||||#
-# Uncomment to use oh-my-zsh #
-#||||||||||||||||||||||||||||#
-
-# Path to your oh-my-zsh installation.
-# export ZSH=~/.oh-my-zsh
-
-# Set name of the theme to load.
-# Look in ~/.oh-my-zsh/themes/
-# Optionally, if you set this to "random", it'll load a random theme each
-# time that oh-my-zsh is loaded.
-# ZSH_THEME="custom"
-
-# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-# Add wisely, as too many plugins slow down shell startup.
-# plugins=(git)
-
-# Initialize oh-my-zsh
-# source $ZSH/oh-my-zsh.sh
-
-#||||||||||||||||#
-# UNUSED CONFIGS #
-#||||||||||||||||#
+#||||||||||||||||||||#
+# UNUSED ZSH CONFIGS #
+#||||||||||||||||||||#
 
 # Load colors
 # autoload -Uz colors
