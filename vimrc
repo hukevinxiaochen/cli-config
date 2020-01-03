@@ -161,6 +161,8 @@ set listchars=tab:▸\ ,eol:¬
 " Set default tab size to 2 spaces
 set tabstop=2
 set shiftwidth=2
+" " Hitting tab will cause vim to use spaces
+set expandtab
 
 " make lightline work
 set laststatus=2
