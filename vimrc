@@ -52,6 +52,7 @@ Plugin 'Lokaltog/vim-distinguished'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'reedes/vim-colors-pencil'
 Plugin 'vim-scripts/summerfruit256.vim'
+Plugin 'NLKNguyen/papercolor-theme'
 
 "-------------------------------- 
 " EXAMPLES OF VUNDLE declarations
@@ -97,7 +98,15 @@ syntax enable
 " Color Schemes----------------------------------------------------------------
 
 " Default
-colorscheme distinguished
+" set background=light
+colorscheme summerfruit256
+
+" PaperColor
+" " Does not have the best support for keywords in Python
+function! g:PaperColor()
+	set background=light
+	colorscheme papercolor
+endfunction
 
 " Solarized Dark
 function! g:SolarizedDark()
@@ -126,6 +135,7 @@ function g:Pencil()
 endfunction
 
 " Summerfruit 256
+" " A light color scheme that works well with Python
 function g:Summerfruit()
 	colorscheme summerfruit256
 endfunction
@@ -147,6 +157,10 @@ nmap <leader>l :set list!<CR>
 
 " Use the same symbols as TextMate for tabstops and EOLs
 set listchars=tab:▸\ ,eol:¬
+
+" Set default tab size to 2 spaces
+set tabstop=2
+set shiftwidth=2
 
 " make lightline work
 set laststatus=2
@@ -171,3 +185,5 @@ let g:jsx_ext_required = 0
 
 " use markdown highlighted fenced code blocks for ruby
 let g:markdown_fenced_languages = ['ruby', 'javascript']
+
+" clipboard
