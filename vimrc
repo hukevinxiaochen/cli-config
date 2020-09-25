@@ -1,3 +1,4 @@
+" NVim : Default
 " 'compatible' 'cp'	boolean	(default on, off when a |vimrc| or |gvimrc|
 " 					file is found, reset in |defaults.vim|)
 " 			global
@@ -104,6 +105,7 @@ Plugin 'vim-scripts/burnttoast256'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
+" NeoVim Default
 filetype plugin indent on    " required
 
 " SPECIAL PLUGIN CONFIGS--------------------------------------------------
@@ -175,6 +177,7 @@ let g:ale_fixers = {
 " endfunction
 
 " make lightline work
+" NVim : Default
 set laststatus=2
 set noshowmode
 let g:lightline = {
@@ -282,6 +285,7 @@ set termguicolors
 let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
 let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 
+" NVim : Default
 " Configure backspace behavior
 " <https://stackoverflow.com/questions/11560201/backspace-key-not-working-in-vim-vi>
 " By default this option is empty, not allowing you to backspace over 
@@ -323,10 +327,12 @@ set hidden
 
 " ## OTHER STANDARD VIM CONFIGS ##
 
+" NVim : Default
 " Character encoding
 scriptencoding utf-8
 set encoding=utf-8
 
+" NVim : Default
 " Shows text in different colors and calls filetype on
 syntax enable
 
