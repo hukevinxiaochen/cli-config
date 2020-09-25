@@ -363,10 +363,14 @@ autocmd bufwritepost .vimrc nested source $MYVIMRC
 nnoremap <C-N><C-N> :set invnumber<CR>
 
 " Toggle `set list`, a command that shows white spaces.
-nnoremap <leader>l :set list!<CR>
+nnoremap <leader>s :set list!<CR>
 
 " Buffers
-noremap <leader>bd :bd<CR>
+noremap <leader>n :bn<CR>
+noremap <leader>p :bp<CR>
+noremap <leader>d :bd<CR>
+noremap <leader>l :ls<CR>
+noremap <leader>m :e .<CR>
 
 " Tabs
 noremap te :tabe
