@@ -389,7 +389,7 @@ nnoremap ; :
 noremap <leader>f :ALEFix<CR>
 
 " Delete line contents
-noremap <leader>d 0d$
+noremap <leader>dl 0d$
 
 " Move lines downward/upward in the file
 " Down
