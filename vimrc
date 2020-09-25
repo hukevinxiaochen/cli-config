@@ -289,6 +289,8 @@ let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 " This is the standard Vi behavior.
 set backspace=indent,eol,start
 
+set mouse=a
+
 " APPEARANCE--------------------------------------------------------------------
 " Not colorscheme related view and appearance related settings.
 " Highlight search results
