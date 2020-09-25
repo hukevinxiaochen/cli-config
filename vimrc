@@ -214,7 +214,7 @@ noremap <F7> :call ToggleBackgroundColour()<CR>
 let g:gruvbox_contrast_dark = 'hard'
 let g:gruvbox_contrast_light = 'hard'
 " autocmd vimenter * colorscheme gruvbox
-colorscheme solarized8_high
+colorscheme gruvbox
 
 " Solarized
 " Lowest contrast, even in high contrast mode
