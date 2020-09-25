@@ -399,9 +399,9 @@ noremap - 0d$o<esc>p
 " noremap _ 0d$O<esc>p
 
 " Clipboard functionality
-vnoremap <leader>y "*y
-nnoremap <leader>y "*y
-nnoremap <leader>p "*p
+vnoremap <leader>c "*y
+nnoremap <leader>c "*y
+nnoremap <leader>v "*p
 
 " Repeat fFtT movements with '
 nnoremap ' ;
