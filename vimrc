@@ -81,15 +81,15 @@ Plugin 'rhysd/vim-gfm-syntax'
 
 " JavaScript
 " improved syntax highlighting and indentation
-" Plugin 'pangloss/vim-javascript'
-Plugin 'yuezk/vim-js'
-Plugin 'mxw/vim-jsx'
+Plugin 'pangloss/vim-javascript'
+" Plugin 'yuezk/vim-js'
+" Plugin 'mxw/vim-jsx'
 
 " HTML template tags
-Plugin 'jonsmithers/vim-html-template-literals'
+" Plugin 'jonsmithers/vim-html-template-literals'
 
 " SQL template tags
-Plugin 'statico/vim-javascript-sql'
+" Plugin 'statico/vim-javascript-sql'
 
 "--------------
 " Color Schemes
