@@ -303,7 +303,7 @@ hi Search ctermfg=19 ctermbg=51
 " tab   - tab         : Black Right-Pointing Small Triange U+25B8 &#9656
 " eol   - end of line : Not Sign U+00AC &#172;
 " space - space       : Ogham Space Mark U+1680 &#5760
-set listchars=tab:▸\ ,eol:¬,trail:•
+set listchars=space:·,tab:▸\ ,eol:¬,trail:•
 
 " Set default tab size to 2 spaces
 set tabstop=2
